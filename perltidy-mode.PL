@@ -1,17 +1,16 @@
 #!perl -w
 use strict;
 
-scalar( @ARGV ) == 1
-  or die "Usage: $0 base-name\nSee ExtUtils::MakeMaker PL_FILES.";
+scalar(@ARGV) == 1
+    or die "Usage: $0 base-name\nSee ExtUtils::MakeMaker PL_FILES.";
 
 # I'd like to do some kind of lookup for perltidy in the path and just
 # haven't gotten there yet.
 my %tags = ( '$perltidy-bin$' => 'perltidy -q' );
 
-
 my $tags_rx = join '|', map quotemeta, keys %tags;
 $tags_rx = qr/$tags_rx/;
-my $out_file = "$ARGV[0].el";
+my $out_file = "perltidy-mode.el";
 open OUT, "> $out_file\0" or die "Can't open '$out_file' for writing: $!";
 while ( my $line = <DATA> ) {
     $line =~ s/($tags_rx)/$tags{$1}/g;
@@ -27,7 +26,7 @@ __DATA__
 ;;; Copyright 2006 Joshua ben Jore
 
 ;;; Author: Joshua ben Jore <jjore@cpan.org>
-;;; Version: 0.01
+;;; Version: 0.02
 ;;; CVS Version: $Id$
 ;;; Keywords: perl perltidy
 ;;; X-URL: http://search.cpan.org/~jjore/perltidy-mode/
@@ -35,19 +34,35 @@ __DATA__
 ;;; This program is free software; you can redistribute it and/or
 ;;; modify it under the same terms as Perl itself.
 
+;;; To install this first generate your perltidy-mode.el file by running
+;;; perltidy-mode.PL with your copy of perl. Copy the generated perltidy-mode.el to
+;;; your ~/.site-lisp/ directory or a different preferred location.
+;;; 
+;;; Add the following lines to your .emacs file to inform emacs of the directory
+;;; and of the two main functions provided by this library.
+;;;
+;;;   (add-to-list 'load-path "~/.site-lisp/")
+;;;   (autoload 'perltidy "perltidy-mode" nil t)
+;;;   (autoload 'perltidy-mode "perltidy-mode" nil t)
+;;;
+;;; Add the following snippet to enable full-auto mode.
+;;;
+;;;   (eval-after-load "cperl-mode"
+;;;     '(add-hook 'cperl-mode-hook 'perltidy-mode))
+;;;
+;;; Add the following snippet to set the C-ct key sequence to trigger
+;;; perltidy.
+;;;
+;;;   ; Run perltidy when the C-ct key sequence is used.
+;;;   (global-set-key "\C-ct" 'perltidy)
 
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;                              Perltidy
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (defvar perltidy-bin "$perltidy-bin$"
   "The command to run perltidy.")
-
-; Run perltidy when the C-ct key sequence is used.
-(global-set-key "\C-ct" 'perltidy)
-
 
 (defmacro mark-active ()
   "Xemacs/emacs compatibility macro. It returns either nil or non-nil
@@ -118,13 +133,6 @@ and there are no guarantees about what constitutes \"non-nil\"."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;                         Automatic perltidy
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-; Automatically enable perltidy-mode for cperl-mode
-(eval-after-load "cperl-mode"
-  '(add-hook 'cperl-mode-hook 'perltidy-mode))
-
-
-
 (defvar perltidy-mode nil
   "Automatically `perltidy' when saving.")
 (make-variable-buffer-local 'perltidy-mode)

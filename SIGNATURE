@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.54.
+signed via the Module::Signature module, version 0.53.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -14,16 +14,16 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 8b8abb3b6f75246c3aa191f6f1732be6e44792ab Changes
+SHA1 8a34ea1b4079b9b23b8f30c7256bf5281dd5b4a9 Changes
 SHA1 4f1d3838c9ece54d5c2fc0400a8fd62fd88a4a2c MANIFEST
-SHA1 da39a3ee5e6b4b0d3255bfef95601890afd80709 META.yml
-SHA1 e648b92bdeb831148ab5cf0fef81441d1cf69e5c Makefile.PL
-SHA1 63c244203125c878df713e4d1153cabac539ef99 README
-SHA1 93142e56588d2a1073b7596714dcff223fe7c9dd perltidy-mode.PL
+SHA1 204d6c61edde86ee52b5cc6d4842a71dc920863a META.yml
+SHA1 86c9bddb74664e8eced4287796441c49bb89ea33 Makefile.PL
+SHA1 d5cef1823b1bcedb3b845272371b66310ffe6c7f README
+SHA1 86a81a9d8a111191ac73885aa6b12d016fa279ec perltidy-mode.PL
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.2.2 (GNU/Linux)
 
-iD8DBQFEqu4wejb/5debeXcRAjUDAJ0UDBGQ2HLPkZTmk1+CLtoilxvkqwCgsv2+
-g6JHJLbfsa7mvyWWVBulVI8=
-=SdaK
+iD8DBQFEq1Zgejb/5debeXcRAsEEAJsEmlefXzYsywhHnZwf5JBG6q0NVwCeOBbJ
+qMUo2R3WoveI4sJTyF5JUyY=
+=cAaV
 -----END PGP SIGNATURE-----

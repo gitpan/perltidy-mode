@@ -4,6 +4,11 @@ perltidy is called whenever you save your source code.
 Quick setup instructions
 ------------------------
 
+  Run the perltidy-mode.PL program with like so to generate the
+  perltidy-mode.el.
+
+    perl perltidy-mode.PL
+
   Copy the perltidy-mode.el file to your ~/.site-lisp directory. Use a
   different directory if you like, just make sure that path is in
   load-path.
@@ -13,6 +18,9 @@ Quick setup instructions
     (add-to-list 'load-path "~/.site-lisp/")  ; your target directory
     (autoload 'perltidy "perltidy-mode" nil t)
     (autoload 'perltidy-mode "perltidy-mode" nil t)
+
+  Add the following snippet to enable full-auto mode where perltidy-mode
+  will be automatically on when cperl-mode is on.
 
     ; Makes perltidy-mode automatic for cperl-mode
     (eval-after-load "cperl-mode"
